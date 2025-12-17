@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StudzAI - Account Löschen</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 40px auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            padding: 40px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .logo {
+            font-size: 48px;
+            margin-bottom: 10px;
+        }
+
+        h1 {
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+
+        .warning {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+
+        .warning-title {
+            color: #856404;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .deep-link-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            margin: 30px 0;
+            border-radius: 15px;
+            text-align: center;
+        }
+
+        .deep-link-button {
+            display: inline-block;
+            background: white;
+            color: #667eea;
+            padding: 15px 40px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 18px;
+            margin-top: 20px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .deep-link-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .steps {
+            margin: 30px 0;
+        }
+
+        .step {
+            background: #f8f9fa;
+            padding: 20px;
+            margin: 15px 0;
+            border-radius: 10px;
+            border-left: 4px solid #667eea;
+        }
+
+        .step-number {
+            display: inline-block;
+            background: #667eea;
+            color: white;
+            width: 30px;
+            height: 30px;
+            line-height: 30px;
+            text-align: center;
+            border-radius: 50%;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+
+        .deletion-list {
+            background: #f8d7da;
+            border-left: 4px solid #dc3545;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+
+        .deletion-list h3 {
+            color: #721c24;
+            margin-bottom: 15px;
+        }
+
+        .deletion-list ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .deletion-list li {
+            padding: 8px 0;
+            padding-left: 25px;
+            position: relative;
+        }
+
+        .deletion-list li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #dc3545;
+            font-weight: bold;
+        }
+
+        .support {
+            background: #d1ecf1;
+            border-left: 4px solid #17a2b8;
+            padding: 20px;
+            margin: 30px 0;
+            border-radius: 4px;
+        }
+
+        .support h3 {
+            color: #0c5460;
+            margin-bottom: 10px;
+        }
+
+        .support a {
+            color: #17a2b8;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .support a:hover {
+            text-decoration: underline;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #dee2e6;
+            color: #6c757d;
+            font-size: 14px;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+                margin: 20px auto;
+            }
+
+            h1 {
+                font-size: 24px;
+            }
+
+            .deep-link-button {
+                font-size: 16px;
+                padding: 12px 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="logo">📚</div>
+            <h1>StudzAI Account Löschen</h1>
+            <p>Anleitung zur Account-Löschung</p>
+        </div>
+
+        <div class="warning">
+            <div class="warning-title">⚠️ Wichtiger Hinweis</div>
+            <p><strong>Die Löschung Ihres Accounts kann NICHT rückgängig gemacht werden!</strong></p>
+            <p>Alle Ihre Daten werden dauerhaft gelöscht.</p>
+        </div>
+
+        <!-- 🔗 DEEP LINK BUTTON -->
+        <div class="deep-link-section">
+            <h2 style="margin-bottom: 10px;">🚀 Schnellzugriff</h2>
+            <p>Direkt in der App löschen:</p>
+            <a href="studzai://delete-account" class="deep-link-button">
+                📱 In der App öffnen
+            </a>
+            <p style="margin-top: 15px; font-size: 14px; opacity: 0.9;">
+                Dieser Button öffnet die StudzAI App und führt Sie direkt zur Account-Löschung
+            </p>
+        </div>
+
+        <h2>🔧 Manuelle Anleitung:</h2>
+
+        <div class="steps">
+            <div class="step">
+                <span class="step-number">1</span>
+                <strong>Öffnen Sie die StudzAI App</strong> auf Ihrem Smartphone
+            </div>
+
+            <div class="step">
+                <span class="step-number">2</span>
+                <strong>Gehen Sie zum "Profil" Tab</strong> (unten rechts in der Navigation)
+            </div>
+
+            <div class="step">
+                <span class="step-number">3</span>
+                <strong>Scrollen Sie nach unten</strong> zum Bereich "Account"
+            </div>
+
+            <div class="step">
+                <span class="step-number">4</span>
+                <strong>Tippen Sie auf "Konto löschen"</strong> (roter Button)
+            </div>
+
+            <div class="step">
+                <span class="step-number">5</span>
+                <strong>Bestätigen Sie die Löschung</strong> im Warn-Dialog
+            </div>
+        </div>
+
+        <div class="deletion-list">
+            <h3>🗑️ Folgende Daten werden gelöscht:</h3>
+            <ul>
+                <li>Firebase Authentication Account</li>
+                <li>Lernfortschritt (Statistiken, XP, Streak, Level)</li>
+                <li>Gespeicherte Inhalte (Lessons, Quizzes, Flashcards)</li>
+                <li>Vokabel-Decks</li>
+                <li>Einstellungen und Präferenzen</li>
+                <li>Subscription-Status</li>
+                <li>Lokale App-Daten</li>
+            </ul>
+            <p style="margin-top: 15px;"><strong>Zeitrahmen:</strong> Die Löschung erfolgt sofort (innerhalb weniger Sekunden).</p>
+        </div>
+
+        <div class="support">
+            <h3>💬 Probleme beim Löschen?</h3>
+            <p>Falls Sie Probleme beim Löschen Ihres Accounts haben oder Unterstützung benötigen:</p>
+            <p style="margin-top: 10px;">
+                📧 Kontaktieren Sie unseren Support: <a href="mailto:support@studzai.app">support@studzai.app</a>
+            </p>
+            <p style="margin-top: 10px; font-size: 14px; color: #6c757d;">
+                Bitte geben Sie in Ihrer E-Mail die E-Mail-Adresse an, die Sie für Ihren StudzAI Account verwenden.
+            </p>
+        </div>
+
+        <div class="footer">
+            <p><strong>StudzAI</strong> - KI-gestütztes Lernen</p>
+            <p style="margin-top: 10px;">
+                © 2025 StudzAI. Alle Rechte vorbehalten.
+            </p>
+            <p style="margin-top: 15px;">
+                <a href="privacy.html" style="color: #667eea; text-decoration: none; margin: 0 10px;">Datenschutz</a> |
+                <a href="terms.html" style="color: #667eea; text-decoration: none; margin: 0 10px;">Nutzungsbedingungen</a>
+            </p>
+        </div>
+    </div>
+
+    <script>
+        // Check if the app is installed (Android only)
+        document.addEventListener('DOMContentLoaded', function() {
+            const deepLinkButton = document.querySelector('.deep-link-button');
+
+            deepLinkButton.addEventListener('click', function(e) {
+                // For analytics (optional)
+                console.log('Deep link clicked: studzai://delete-account');
+
+                // Fallback: If app is not installed, show info after delay
+                setTimeout(function() {
+                    // This would show if the app didn't open
+                    console.log('If you see this, the app might not be installed');
+                }, 2000);
+            });
+        });
+    </script>
+</body>
+</html>
+
