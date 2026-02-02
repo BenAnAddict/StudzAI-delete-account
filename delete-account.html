@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>StudzAI - Account Löschen</title>
+    <title>StudzAI - Account Löschen / Delete Account</title>
     <style>
         * {
             margin: 0;
@@ -27,6 +27,40 @@
             border-radius: 20px;
             box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
             padding: 40px;
+        }
+
+        .language-switch {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .language-switch button {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin: 0 5px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1em;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+
+        .language-switch button:hover {
+            background: #764ba2;
+        }
+
+        .language-switch button.active {
+            background: #764ba2;
+        }
+
+        .language-content {
+            display: none;
+        }
+
+        .language-content.active {
+            display: block;
         }
 
         .header {
@@ -175,6 +209,7 @@
             font-size: 14px;
         }
 
+
         @media (max-width: 768px) {
             .container {
                 padding: 20px;
@@ -196,108 +231,232 @@
     <div class="container">
         <div class="header">
             <div class="logo">📚</div>
-            <h1>StudzAI Account Löschen</h1>
-            <p>Anleitung zur Account-Löschung</p>
+            <h1>StudzAI</h1>
         </div>
 
-        <div class="warning">
-            <div class="warning-title">⚠️ Wichtiger Hinweis</div>
-            <p><strong>Die Löschung Ihres Accounts kann NICHT rückgängig gemacht werden!</strong></p>
-            <p>Alle Ihre Daten werden dauerhaft gelöscht.</p>
+        <div class="language-switch">
+            <button onclick="switchLanguage('de')" id="btn-de" class="active">🇩🇪 Deutsch</button>
+            <button onclick="switchLanguage('en')" id="btn-en">🇬🇧 English</button>
         </div>
 
-        <!-- 🔗 DEEP LINK BUTTON -->
-        <div class="deep-link-section">
-            <h2 style="margin-bottom: 10px;">🚀 Schnellzugriff</h2>
-            <p>Direkt in der App löschen:</p>
-            <a href="studzai://delete-account" class="deep-link-button">
-                📱 In der App öffnen
-            </a>
-            <p style="margin-top: 15px; font-size: 14px; opacity: 0.9;">
-                Dieser Button öffnet die StudzAI App und führt Sie direkt zur Account-Löschung
-            </p>
-        </div>
+        <!-- GERMAN VERSION -->
+        <div id="content-de" class="language-content active">
+            <h1 style="color: #667eea; text-align: center; margin-bottom: 10px;">Account Löschen</h1>
+            <p style="text-align: center; margin-bottom: 30px; color: #6c757d;">Anleitung zur Account-Löschung</p>
 
-        <h2>🔧 Manuelle Anleitung:</h2>
-
-        <div class="steps">
-            <div class="step">
-                <span class="step-number">1</span>
-                <strong>Öffnen Sie die StudzAI App</strong> auf Ihrem Smartphone
+            <div class="warning">
+                <div class="warning-title">⚠️ Wichtiger Hinweis</div>
+                <p><strong>Die Löschung Ihres Accounts kann NICHT rückgängig gemacht werden!</strong></p>
+                <p>Alle Ihre Daten werden dauerhaft gelöscht.</p>
             </div>
 
-            <div class="step">
-                <span class="step-number">2</span>
-                <strong>Gehen Sie zum "Profil" Tab</strong> (unten rechts in der Navigation)
+            <!-- 🔗 DEEP LINK BUTTON -->
+            <div class="deep-link-section">
+                <h2 style="margin-bottom: 10px;">🚀 Schnellzugriff</h2>
+                <p>Direkt in der App löschen:</p>
+                <a href="studzai://delete-account" class="deep-link-button">
+                    📱 In der App öffnen
+                </a>
+                <p style="margin-top: 15px; font-size: 14px; opacity: 0.9;">
+                    Dieser Button öffnet die StudzAI App und führt Sie direkt zur Account-Löschung
+                </p>
             </div>
 
-            <div class="step">
-                <span class="step-number">3</span>
-                <strong>Scrollen Sie nach unten</strong> zum Bereich "Account"
+            <h2>🔧 Manuelle Anleitung:</h2>
+
+            <div class="steps">
+                <div class="step">
+                    <span class="step-number">1</span>
+                    <strong>Öffnen Sie die StudzAI App</strong> auf Ihrem Smartphone
+                </div>
+
+                <div class="step">
+                    <span class="step-number">2</span>
+                    <strong>Gehen Sie zum "Profil" Tab</strong> (unten rechts in der Navigation)
+                </div>
+
+                <div class="step">
+                    <span class="step-number">3</span>
+                    <strong>Scrollen Sie nach unten</strong> zum Bereich "Account"
+                </div>
+
+                <div class="step">
+                    <span class="step-number">4</span>
+                    <strong>Tippen Sie auf "Konto löschen"</strong> (roter Button)
+                </div>
+
+                <div class="step">
+                    <span class="step-number">5</span>
+                    <strong>Bestätigen Sie die Löschung</strong> im Warn-Dialog
+                </div>
             </div>
 
-            <div class="step">
-                <span class="step-number">4</span>
-                <strong>Tippen Sie auf "Konto löschen"</strong> (roter Button)
+            <div class="deletion-list">
+                <h3>🗑️ Folgende Daten werden gelöscht:</h3>
+                <ul>
+                    <li>Firebase Authentication Account</li>
+                    <li>Lernfortschritt (Statistiken, XP, Streak, Level)</li>
+                    <li>Gespeicherte Inhalte (Lessons, Quizzes, Flashcards)</li>
+                    <li>Vokabel-Decks</li>
+                    <li>Einstellungen und Präferenzen</li>
+                    <li>Subscription-Status</li>
+                    <li>Lokale App-Daten</li>
+                </ul>
+                <p style="margin-top: 15px;"><strong>Zeitrahmen:</strong> Die Löschung erfolgt sofort (innerhalb weniger Sekunden).</p>
             </div>
 
-            <div class="step">
-                <span class="step-number">5</span>
-                <strong>Bestätigen Sie die Löschung</strong> im Warn-Dialog
+            <div class="support">
+                <h3>💬 Probleme beim Löschen?</h3>
+                <p>Falls Sie Probleme beim Löschen Ihres Accounts haben oder Unterstützung benötigen:</p>
+                <p style="margin-top: 10px;">
+                    📧 Kontaktieren Sie unseren Support: <a href="mailto:smartcheffai@gmail.com">smartcheffai@gmail.com</a>
+                </p>
+                <p style="margin-top: 10px; font-size: 14px; color: #6c757d;">
+                    Bitte geben Sie in Ihrer E-Mail die E-Mail-Adresse an, die Sie für Ihren StudzAI Account verwenden.
+                </p>
+            </div>
+
+            <div class="footer">
+                <p><strong>StudzAI</strong> - KI-gestütztes Lernen</p>
+                <p style="margin-top: 10px;">
+                    © 2025 StudzAI. Alle Rechte vorbehalten.
+                </p>
+                <p style="margin-top: 15px;">
+                    <a href="https://benanaddict.github.io/StudzAI-privacy/" style="color: #667eea; text-decoration: none; margin: 0 10px;">Datenschutz</a>
+                </p>
             </div>
         </div>
 
-        <div class="deletion-list">
-            <h3>🗑️ Folgende Daten werden gelöscht:</h3>
-            <ul>
-                <li>Firebase Authentication Account</li>
-                <li>Lernfortschritt (Statistiken, XP, Streak, Level)</li>
-                <li>Gespeicherte Inhalte (Lessons, Quizzes, Flashcards)</li>
-                <li>Vokabel-Decks</li>
-                <li>Einstellungen und Präferenzen</li>
-                <li>Subscription-Status</li>
-                <li>Lokale App-Daten</li>
-            </ul>
-            <p style="margin-top: 15px;"><strong>Zeitrahmen:</strong> Die Löschung erfolgt sofort (innerhalb weniger Sekunden).</p>
-        </div>
+        <!-- ENGLISH VERSION -->
+        <div id="content-en" class="language-content">
+            <h1 style="color: #667eea; text-align: center; margin-bottom: 10px;">Delete Account</h1>
+            <p style="text-align: center; margin-bottom: 30px; color: #6c757d;">Account Deletion Guide</p>
 
-        <div class="support">
-            <h3>💬 Probleme beim Löschen?</h3>
-            <p>Falls Sie Probleme beim Löschen Ihres Accounts haben oder Unterstützung benötigen:</p>
-            <p style="margin-top: 10px;">
-                📧 Kontaktieren Sie unseren Support: <a href="mailto:support@studzai.app">support@studzai.app</a>
-            </p>
-            <p style="margin-top: 10px; font-size: 14px; color: #6c757d;">
-                Bitte geben Sie in Ihrer E-Mail die E-Mail-Adresse an, die Sie für Ihren StudzAI Account verwenden.
-            </p>
-        </div>
+            <div class="warning">
+                <div class="warning-title">⚠️ Important Notice</div>
+                <p><strong>Account deletion CANNOT be undone!</strong></p>
+                <p>All your data will be permanently deleted.</p>
+            </div>
 
-        <div class="footer">
-            <p><strong>StudzAI</strong> - KI-gestütztes Lernen</p>
-            <p style="margin-top: 10px;">
-                © 2025 StudzAI. Alle Rechte vorbehalten.
-            </p>
-            <p style="margin-top: 15px;">
-                <a href="privacy.html" style="color: #667eea; text-decoration: none; margin: 0 10px;">Datenschutz</a> |
-                <a href="terms.html" style="color: #667eea; text-decoration: none; margin: 0 10px;">Nutzungsbedingungen</a>
-            </p>
+            <!-- 🔗 DEEP LINK BUTTON -->
+            <div class="deep-link-section">
+                <h2 style="margin-bottom: 10px;">🚀 Quick Access</h2>
+                <p>Delete directly in the app:</p>
+                <a href="studzai://delete-account" class="deep-link-button">
+                    📱 Open in App
+                </a>
+                <p style="margin-top: 15px; font-size: 14px; opacity: 0.9;">
+                    This button opens the StudzAI app and takes you directly to account deletion
+                </p>
+            </div>
+
+            <h2>🔧 Manual Instructions:</h2>
+
+            <div class="steps">
+                <div class="step">
+                    <span class="step-number">1</span>
+                    <strong>Open the StudzAI App</strong> on your smartphone
+                </div>
+
+                <div class="step">
+                    <span class="step-number">2</span>
+                    <strong>Go to the "Profile" tab</strong> (bottom right in the navigation)
+                </div>
+
+                <div class="step">
+                    <span class="step-number">3</span>
+                    <strong>Scroll down</strong> to the "Account" section
+                </div>
+
+                <div class="step">
+                    <span class="step-number">4</span>
+                    <strong>Tap on "Delete Account"</strong> (red button)
+                </div>
+
+                <div class="step">
+                    <span class="step-number">5</span>
+                    <strong>Confirm the deletion</strong> in the warning dialog
+                </div>
+            </div>
+
+            <div class="deletion-list">
+                <h3>🗑️ The following data will be deleted:</h3>
+                <ul>
+                    <li>Firebase Authentication Account</li>
+                    <li>Learning progress (Statistics, XP, Streak, Level)</li>
+                    <li>Saved content (Lessons, Quizzes, Flashcards)</li>
+                    <li>Vocabulary Decks</li>
+                    <li>Settings and Preferences</li>
+                    <li>Subscription Status</li>
+                    <li>Local App Data</li>
+                </ul>
+                <p style="margin-top: 15px;"><strong>Timeframe:</strong> Deletion happens immediately (within a few seconds).</p>
+            </div>
+
+            <div class="support">
+                <h3>💬 Problems with deletion?</h3>
+                <p>If you have problems deleting your account or need support:</p>
+                <p style="margin-top: 10px;">
+                    📧 Contact our support: <a href="mailto:smartcheffai@gmail.com">smartcheffai@gmail.com</a>
+                </p>
+                <p style="margin-top: 10px; font-size: 14px; color: #6c757d;">
+                    Please include the email address you use for your StudzAI account in your message.
+                </p>
+            </div>
+
+            <div class="footer">
+                <p><strong>StudzAI</strong> - AI-powered Learning</p>
+                <p style="margin-top: 10px;">
+                    © 2025 StudzAI. All rights reserved.
+                </p>
+                <p style="margin-top: 15px;">
+                    <a href="https://benanaddict.github.io/StudzAI-privacy/" style="color: #667eea; text-decoration: none; margin: 0 10px;">Privacy Policy</a>
+                </p>
+            </div>
         </div>
     </div>
 
     <script>
-        // Check if the app is installed (Android only)
+        function switchLanguage(lang) {
+            // Hide all content
+            document.querySelectorAll('.language-content').forEach(el => {
+                el.classList.remove('active');
+            });
+
+            // Show selected content
+            document.getElementById('content-' + lang).classList.add('active');
+
+            // Update buttons
+            document.querySelectorAll('.language-switch button').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            document.getElementById('btn-' + lang).classList.add('active');
+
+            // Update page language
+            document.documentElement.lang = lang;
+
+            // Save preference
+            localStorage.setItem('studzai-delete-lang', lang);
+        }
+
+        // Load saved language preference and setup deep link
         document.addEventListener('DOMContentLoaded', function() {
-            const deepLinkButton = document.querySelector('.deep-link-button');
+            const savedLang = localStorage.getItem('studzai-delete-lang');
+            if (savedLang && (savedLang === 'en' || savedLang === 'de')) {
+                switchLanguage(savedLang);
+            }
 
-            deepLinkButton.addEventListener('click', function(e) {
-                // For analytics (optional)
-                console.log('Deep link clicked: studzai://delete-account');
+            // Deep link button functionality
+            const deepLinkButtons = document.querySelectorAll('.deep-link-button');
+            deepLinkButtons.forEach(button => {
+                button.addEventListener('click', function(e) {
+                    console.log('Deep link clicked: studzai://delete-account');
 
-                // Fallback: If app is not installed, show info after delay
-                setTimeout(function() {
-                    // This would show if the app didn't open
-                    console.log('If you see this, the app might not be installed');
-                }, 2000);
+                    // Fallback: If app is not installed, show info after delay
+                    setTimeout(function() {
+                        console.log('If you see this, the app might not be installed');
+                    }, 2000);
+                });
             });
         });
     </script>
