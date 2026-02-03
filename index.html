@@ -113,6 +113,7 @@
             margin-top: 20px;
             transition: all 0.3s ease;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            cursor: pointer;
         }
 
         .deep-link-button:hover {
@@ -227,7 +228,7 @@
         <div class="deep-link-section">
             <h2>Schnellste Methode</h2>
             <p>Wenn Sie die App installiert haben, tippen Sie hier:</p>
-            <a href="studzai://delete-account" class="deep-link-button">
+            <a href="javascript:void(0)" onclick="tryOpenApp()" class="deep-link-button">
                 📱 In der App löschen
             </a>
             <p style="margin-top: 15px; font-size: 0.9em; opacity: 0.9;">
@@ -300,7 +301,7 @@
         <div class="deep-link-section">
             <h2>Fastest Method</h2>
             <p>If you have the app installed, tap here:</p>
-            <a href="studzai://delete-account" class="deep-link-button">
+            <a href="javascript:void(0)" onclick="tryOpenApp()" class="deep-link-button">
                 📱 Delete in App
             </a>
             <p style="margin-top: 15px; font-size: 0.9em; opacity: 0.9;">
@@ -385,32 +386,41 @@
         localStorage.setItem('studzai-delete-lang', lang);
     }
 
-    // Load saved language preference and setup deep link
+    // Verbesserte Funktion zum Öffnen der App
+    function tryOpenApp() {
+        console.log('📱 Attempting to open app...');
+
+        // Android Intent URL - Das ist der "Profi-Weg" für Android
+        // Es versucht studzai:// zu öffnen. Wenn das fehlschlägt, bleibt man auf der Seite.
+        // Format: intent://<host>#Intent;scheme=<scheme>;package=<package_name>;end
+        var intentUrl = "intent://delete-account#Intent;scheme=studzai;package=com.studzai.app;end";
+
+        // Normaler Deep Link als Fallback
+        var customSchemeUrl = "studzai://delete-account";
+
+        var userAgent = navigator.userAgent || navigator.vendor || window.opera;
+
+        // Wenn es ein Android-Gerät ist
+        if (/android/i.test(userAgent)) {
+             // Versuche den Intent-Link (funktioniert am besten in Chrome)
+             window.location.href = intentUrl;
+        } else {
+             // Für iOS oder andere: Versuche den normalen Link
+             window.location.href = customSchemeUrl;
+        }
+
+        // Fallback-Logik (nur zur Info)
+        setTimeout(function() {
+            console.log('ℹ️ Wenn sich nichts geöffnet hat, ist die App wahrscheinlich nicht installiert.');
+        }, 2000);
+    }
+
+    // Load saved language preference
     document.addEventListener('DOMContentLoaded', function() {
         const savedLang = localStorage.getItem('studzai-delete-lang');
         if (savedLang && (savedLang === 'en' || savedLang === 'de')) {
             switchLanguage(savedLang);
         }
-
-        // Deep link button functionality
-        const deepLinkButtons = document.querySelectorAll('.deep-link-button');
-        deepLinkButtons.forEach(button => {
-            button.addEventListener('click', function(e) {
-                const href = this.getAttribute('href');
-                console.log('🔗 Deep link clicked:', href);
-
-                if (href.startsWith('studzai://')) {
-                    console.log('📱 Attempting to open with custom scheme...');
-                } else if (href.startsWith('https://')) {
-                    console.log('🌐 Attempting to open with HTTPS deep link...');
-                }
-
-                // Fallback: If app is not installed, show info after delay
-                setTimeout(function() {
-                    console.log('ℹ️ If you see this, the app might not be installed or the link didn\'t work');
-                }, 2000);
-            });
-        });
     });
 </script>
 </body>
