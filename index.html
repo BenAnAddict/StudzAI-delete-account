@@ -365,57 +365,29 @@
 
 <script>
     function switchLanguage(lang) {
-        // Hide all content
-        document.querySelectorAll('.language-content').forEach(el => {
-            el.classList.remove('active');
-        });
-
-        // Show selected content
+        document.querySelectorAll('.language-content').forEach(el => el.classList.remove('active'));
         document.getElementById('content-' + lang).classList.add('active');
-
-        // Update buttons
-        document.querySelectorAll('.language-switch button').forEach(btn => {
-            btn.classList.remove('active');
-        });
+        document.querySelectorAll('.language-switch button').forEach(btn => btn.classList.remove('active'));
         document.getElementById('btn-' + lang).classList.add('active');
-
-        // Update page language
         document.documentElement.lang = lang;
-
-        // Save preference
         localStorage.setItem('studzai-delete-lang', lang);
     }
 
-    // Verbesserte Funktion zum Öffnen der App
+    // Vereinfachte Funktion: Versucht nur den Link, ohne Play Store Zwang
     function tryOpenApp() {
-        console.log('📱 Attempting to open app...');
+        console.log('📱 Versuche App zu öffnen...');
 
-        // Android Intent URL - Das ist der "Profi-Weg" für Android
-        // Es versucht studzai:// zu öffnen. Wenn das fehlschlägt, bleibt man auf der Seite.
-        // Format: intent://<host>#Intent;scheme=<scheme>;package=<package_name>;end
-        var intentUrl = "intent://delete-account#Intent;scheme=studzai;package=com.studzai.app;end";
+        // Wir nutzen jetzt den direkten Weg.
+        // Wenn die App installiert ist UND das Manifest stimmt, öffnet sie sich.
+        // Wenn nicht, passiert auf der Seite einfach nichts (besser zum Testen).
+        window.location.href = "studzai://delete-account";
 
-        // Normaler Deep Link als Fallback
-        var customSchemeUrl = "studzai://delete-account";
-
-        var userAgent = navigator.userAgent || navigator.vendor || window.opera;
-
-        // Wenn es ein Android-Gerät ist
-        if (/android/i.test(userAgent)) {
-             // Versuche den Intent-Link (funktioniert am besten in Chrome)
-             window.location.href = intentUrl;
-        } else {
-             // Für iOS oder andere: Versuche den normalen Link
-             window.location.href = customSchemeUrl;
-        }
-
-        // Fallback-Logik (nur zur Info)
+        // Optional: Nachricht für den Nutzer nach 2 Sekunden
         setTimeout(function() {
-            console.log('ℹ️ Wenn sich nichts geöffnet hat, ist die App wahrscheinlich nicht installiert.');
+            console.log('App hat nicht reagiert.');
         }, 2000);
     }
 
-    // Load saved language preference
     document.addEventListener('DOMContentLoaded', function() {
         const savedLang = localStorage.getItem('studzai-delete-lang');
         if (savedLang && (savedLang === 'en' || savedLang === 'de')) {
